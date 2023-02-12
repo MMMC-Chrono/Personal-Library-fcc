@@ -1,7 +1,9 @@
 const mongoose  = require('mongoose')
 
 let BookSchema = new mongoose.Schema({
-    title: String
+  title: String,
+  comment: [String],
+  commentcount: Number
 }, {
     versionKey: false
 })

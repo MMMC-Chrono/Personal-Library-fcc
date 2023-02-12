@@ -16,15 +16,14 @@ module.exports = function (app) {
           .catch((e) => console.log(e))
 
   const {
-    createBook
+    getAllBooks,
+    createBook,
+    getSingleBook
   } = require('../controllers/functions')
 
 
   app.route('/api/books')
-    .get(function (req, res){
-      //response will be array of book objects
-      //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
-    })
+    .get(getAllBooks)
     
     .post(createBook)
     
@@ -35,10 +34,11 @@ module.exports = function (app) {
 
 
   app.route('/api/books/:id')
-    .get(function (req, res){
-      let bookid = req.params.id;
-      //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
-    })
+    .get(getSingleBook)
+    // function (req, res){
+    //   let bookid = req.params.id;
+    //   //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+    // }
     
     .post(function(req, res){
       let bookid = req.params.id;
