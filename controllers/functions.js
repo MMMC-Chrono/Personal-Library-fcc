@@ -20,10 +20,12 @@ const createBook = async(req, res) => {
 }
 
 const getSingleBook = async(req, res) => {
-  let bookid = req.params.id;
-  console.log(bookid)
-  let book = await Books.findById({_id: bookid})
-  // console.log(book)
+    let bookid = req.params.id;
+    let book = await Books.findById({_id: bookid}).select('title comment')
+    if (!book) {
+      return res.status(200).send('no book exists')
+    }
+    return res.status(200).json(book)
 }
 
 module.exports = {
