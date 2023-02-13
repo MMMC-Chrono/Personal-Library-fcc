@@ -2,7 +2,7 @@ const mongoose  = require('mongoose')
 
 let BookSchema = new mongoose.Schema({
   title: String,
-  comment: [String],
+  comments: Array,
   commentcount: Number
 }, {
     versionKey: false

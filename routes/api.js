@@ -18,7 +18,10 @@ module.exports = function (app) {
   const {
     getAllBooks,
     createBook,
-    getSingleBook
+    getSingleBook,
+    addComment,
+    deleteSingleBook,
+    deleteAll
   } = require('../controllers/functions')
 
 
@@ -27,28 +30,12 @@ module.exports = function (app) {
     
     .post(createBook)
     
-    .delete(function(req, res){
-      //if successful response will be 'complete delete successful'
-    });
-
-
+    .delete(deleteAll);
 
   app.route('/api/books/:id')
     .get(getSingleBook)
-    // function (req, res){
-    //   let bookid = req.params.id;
-    //   //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
-    // }
     
-    .post(function(req, res){
-      let bookid = req.params.id;
-      let comment = req.body.comment;
-      //json res format same as .get
-    })
+    .post(addComment)
     
-    .delete(function(req, res){
-      let bookid = req.params.id;
-      //if successful response will be 'delete successful'
-    });
-  
+    .delete(deleteSingleBook)
 };
